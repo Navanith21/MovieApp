@@ -4,7 +4,7 @@ import RNFS from 'react-native-fs';
 import Papa from 'papaparse';
 
 export function App() {
-    const [csvData, setCsvData] = useState([]);
+    const [csvData, setCsvData] = useState<any[]>([]);
 
     useEffect(() => {
         // Path to the CSV file - adjust path according to where your file is
@@ -30,7 +30,7 @@ export function App() {
                 <View key={index} style={{marginBottom: 10}}>
                     {Object.entries(row).map(([key, value]) => (
                         <Text key={key}>
-                            {key}: {value}
+                            {key}: value
                         </Text>
                     ))}
                 </View>

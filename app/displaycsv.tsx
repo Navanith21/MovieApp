@@ -10,14 +10,13 @@ export function App() {
     useEffect(() => {
         const loadCSV = async () => {
             try {
-                // Load CSV file from project assets folder (relative path)
                 const asset = Asset.fromModule(require('./assets/customers-100.csv'));
                 await asset.downloadAsync();
 
-                // Read the content
-                const fileContent = await FileSystem.readAsStringAsync(typeof asset.localUri === "string" ? asset.localUri : "");
+                const fileContent = await FileSystem.readAsStringAsync(
+                    typeof asset.localUri === 'string' ? asset.localUri : ''
+                );
 
-                // Parse CSV
                 const parsed = Papa.parse(fileContent, {
                     header: true,
                     skipEmptyLines: true,
@@ -31,41 +30,16 @@ export function App() {
 
         loadCSV();
     }, []);
-    return (
-        <ScrollView style = {}
-        padding: 20
-    }
-}>
-    {
-        csvData.map((item, index) => (
-            <View key = {index}
-        style = {
-        {
-            marginBottom: 10
-        }
-    }>
-        <Text>Name
-    :
-        {
-            item.name
-        }
-        </Text>
-        < Text > Age
-    :
-        {
-            item.age
-        }
-        </Text>
-        < Text > City
-    :
-        {
-            item.city
-        }
-        </Text>
-        < /View>
-    ))
-    }
-    </ScrollView>
-)
-};
 
+    return (
+        <ScrollView style={{ padding: 20 }}>
+           {csvData.map((row: any, index: any) => (
+             <View key={index} style={{ marginBottom: 10 }}>
+                <Text>Name: {row.name}</Text>
+                <Text>Age: {row.age}</Text>
+                <Text>City: {row.city}</Text>
+              </View>
+           ))}
+        </ScrollView>
+);
+}
