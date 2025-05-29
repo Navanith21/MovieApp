@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "MovieApp",
-    "slug": "MovieApp",
+    "name": "Reactnative_CSV_Parsing",
+    "slug": "Reactnative_CSV_Parsing",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import RNFS from 'react-native-fs';
+import * as FileSystem from 'expo-file-system';
 import Papa from 'papaparse';
 
 export function App() {
@@ -8,18 +8,18 @@ export function App() {
 
     useEffect(() => {
         // Path to the CSV file - adjust path according to where your file is
-        const path = RNFS.DocumentDirectoryPath + 'customer-100.csv';
+        const path = FileSystem.documentDirectory + 'customer-100.csv';
 
         // Read the file as a string
-        RNFS.readFile(path, 'utf8')
-            .then((contents) => {
+        FileSystem.readAsStringAsync(path, { encoding: FileSystem.EncodingType.UTF8 })
+            .then((contents: string) => {
                 // Parse CSV content using PapaParse
                 const results = Papa.parse(contents, {
                     header: true,  // if your CSV has headers
                 });
                 setCsvData(results.data);  // set the parsed data in state
             })
-            .catch((err) => {
+            .catch((err: any) => {
                 console.log('Error reading file:', err);
             });
     }, []);
