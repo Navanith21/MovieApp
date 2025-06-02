@@ -4,7 +4,7 @@ import * as FileSystem from 'expo-file-system';
 import { Asset } from 'expo-asset';
 import Papa from 'papaparse';
 
-export function App() {
+export default function App() {
     const [csvData, setCsvData] = useState<any[]>([]);
 
     useEffect(() => {

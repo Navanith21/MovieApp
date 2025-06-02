@@ -3,7 +3,7 @@ import { View, Text, ScrollView } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import Papa from 'papaparse';
 
-export function App() {
+export function App( ) {
     const [csvData, setCsvData] = useState<any[]>([]);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ export function App() {
                 <View key={index} style={{marginBottom: 10}}>
                     {Object.entries(row).map(([key, value]) => (
                         <Text key={key}>
-                            {key}: value
+                            {key}: {String(value)}
                         </Text>
                     ))}
                 </View>
